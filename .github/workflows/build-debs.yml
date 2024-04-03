@@ -20,9 +20,17 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential debhelper
-    
-    - name: Build Debian package
-      uses: dawidd6/action-debian-package@v1.6.0
+    - name:  build-deb-action
+      uses: jiro4989/build-deb-action@v2
+      with:
+        # Package name of debian package.
+        package: libmodbus
+        # Directory of release files.
+        package_root: ./
+        # Package maintainer name.
+        maintainer: Aleksandr Makarov <aleksandr.o.makarov@gmail.com>
+        # Package version.
+        version: 0.1
 
     - name: Publish artifact
       uses: actions/upload-artifact@v2
