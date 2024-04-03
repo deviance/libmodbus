@@ -20,16 +20,12 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y build-essential debhelper
-
+    
     - name: Build Debian package
-      run: |
-        ./autogen.sh
-        ./configure
-        make
-        dpkg-buildpackage -us -uc
+      uses: dawidd6/action-debian-package@v1.6.0
 
     - name: Publish artifact
       uses: actions/upload-artifact@v2
       with:
         name: libmodbus-deb
-        path: ../*.deb
+        path: ./*.deb
