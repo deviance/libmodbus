@@ -23,7 +23,9 @@ jobs:
 
     - name: Build Debian package
       run: |
-        cd libmodbus
+        ./autogen.sh
+        ./configure
+        make
         dpkg-buildpackage -us -uc
 
     - name: Publish artifact
