@@ -1,0 +1,33 @@
+name: Build Debian Package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential debhelper
+
+    - name: Build Debian package
+      run: |
+        cd libmodbus
+        dpkg-buildpackage -us -uc
+
+    - name: Publish artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: libmodbus-deb
+        path: libmodbus/*.deb
