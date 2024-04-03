@@ -1,0 +1,11 @@
+Source: libmodbus
+Section: libs
+Priority: optional
+Maintainer: Your Name <your.email@example.com>
+Build-Depends: debhelper (>= 10), autotools-dev, libtool, pkg-config
+
+Package: libmodbus
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: A library for Modbus protocol
+ A library that provides functions for handling Modbus communication
